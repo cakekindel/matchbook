@@ -229,10 +229,9 @@ function getNoise(animal: Animal) {
 <summary>Dealing with discriminants (Click to expand)</summary>
 
 ```typescript
-// #region models
-interface GithubEvent {
-    eventType: 'pull_request_opened' | 'pull_request_closed';
-}
+import match from 'matchbook';
+
+type GithubEvent = GithubPullRequestOpenedEvent | GithubPullRequestClosedEvent;
 
 interface GithubPullRequestOpenedEvent {
     eventType: 'pull_request_opened';
@@ -241,40 +240,26 @@ interface GithubPullRequestOpenedEvent {
 interface GithubPullRequestClosedEvent {
     eventType: 'pull_request_closed';
 }
-// #endregion
-
-// #region type guards
-function eventIsPrOpened(
-    event: GithubEvent
-): event is GithubPullRequestOpenedEvent {
-    return event.eventType === 'pull_request_opened';
-}
-
-function eventIsPrClosed(
-    event: GithubEvent
-): event is GithubPullRequestClosedEvent {
-    return event.eventType === 'pull_request_closed';
-}
-// #endregion
 
 function runChecks(event: GithubPullRequestOpenedEvent): void;
 function deleteSourceBranch(event: GithubPullRequestClosedEvent): void;
 
 export function handleGithubEvent(event: GithubEvent): void {
     match.strike(event, [
-        [eventIsPrOpened, runChecks],
-        [eventIsPrClosed, deleteSourceBranch],
+        [e => e.eventType === 'pull_request_opened', runChecks],
+        [e => e.eventType === 'pull_request_closed', deleteSourceBranch],
     ]);
 }
-
 ```
 </details>
 
 <details>
-<summary>Act differently for different types (Click to expand)</summary>
+<summary>Switch on constructor type (Click to expand)</summary>
 
 ```typescript
-interface Good { /* ... */ }
+import match from 'matchbook';
+
+class Good { /* ... */ }
 function computationThatMayFail(): Error | Good;
 function handleError(e: Error): void;
 function handleGood(e: Good): void;
@@ -283,9 +268,19 @@ export function doStuff(): void {
     const result = computationThatMayFail();
 
     match.strike(result, [
-        [Error, handleError],
-        [match.default, handleGood],
+        [r => r instanceof Error, handleError], // [1]
+        [Good, handleGood], // [2]
     ]);
 }
+
+// [1]  in our tester slot, we check if result is an
+//      instance of the Error constructor
+
+// [2]  we can optionally just pass the constructor
+//      into our tester slot and matchbook will
+//      know to check using the instanceof operator.
 ```
 </details>
+
+### API
+Coming soon - `typedoc`
