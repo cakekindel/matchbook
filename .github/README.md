@@ -11,17 +11,20 @@
 Pattern matching is an feature of many modern languages that lets you
 succinctly act on a value that may be one of many different types or states.
 
+### What Problems does `matchbook` solve?
 <details>
 <summary>
-### What Problems does `matchbook` solve?
-For a very simple example, let's suppose you wanted to have a function
-that accepts an `Animal` and returns what kind of noise that animal makes.
+Click to expand
 </summary>
 
-<details>
-<summary>
+For a very simple example, let's suppose you wanted to have a function
+that accepts an `Animal` and returns what kind of noise that animal makes.
+
 A naive implementation in `rust`, a language with
 a native pattern matching operator
+<details>
+<summary>
+Click to expand
 </summary>
 
 ```rust
@@ -47,9 +50,10 @@ pub fn main() {
 ```
 </details>
 
+The same example in `typescript` using switch / case statements
 <details>
 <summary>
-The same example in `typescript` using switch / case statements
+Click to expand
 </summary>
 
 ```typescript
@@ -86,7 +90,7 @@ in different types?
 
 <details>
 <summary>
-This example is getting bloated!
+Click to expand
 </summary>
 
 ```typescript
@@ -128,11 +132,11 @@ Supposing our `getNoise` function is still relevant, what happens to its impleme
 
 <details>
 <summary>
-even worse!
+Click to expand
 </summary>
 
 ```typescript
-// ...
+// this is getting bloated!
 
 function getNoise(animal: Animal) {
     if (animal.animalType === AnimalType.Dog) {
@@ -174,6 +178,7 @@ function getDogNoise(dog: Dog): string {
     }
 }
 
+// much better! could still be a little more concise though...
 function getNoise(animal: Animal) {
     if (animalIsDog(animal)) {
         return getDogNoise(animal);
