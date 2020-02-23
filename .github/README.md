@@ -3,21 +3,14 @@
 
 ---
 
-### Usage
-
-<details>
-<summary>Dealing with discriminants? (Click to expand)</summary>
-
-```typescript
-
-```
-</details>
-
 ### What is Pattern Matching?
 Pattern matching is a feature of many modern languages that lets you
 act on a value that may be many different types or states.
 
 ### What Problems does `matchbook` solve?
+`matchbook` is intended to be a versatile low-cost replacement for nested
+`if-else` blocks and `switch` statements.
+
 <details>
 <summary>Click to expand</summary>
 <blockquote>
@@ -129,7 +122,6 @@ Let's say we just got some new requirements, too. Our `getNoise` function needs 
 - `'bark'` if `animal` is a `Dog` of `breed` `DogBreed#GermanShepherd`
 - `'woof'` if `animal` is a `Dog` of `breed` `DogBreed#Beagle`
 
-
 <details>
 <summary>
 Supposing our `getNoise` function is still relevant, what happens to its implementation?
@@ -196,7 +188,6 @@ function getNoise(animal: Animal) {
 ```
 </details>
 
-
 <details>
 <summary>
 This is better! Although that very succinct rust `match` operator
@@ -230,4 +221,71 @@ function getNoise(animal: Animal) {
 ```
 </details>
 </blockquote>
+</details>
+
+### Usage Examples
+
+<details>
+<summary>Dealing with discriminants (Click to expand)</summary>
+
+```typescript
+// #region models
+interface GithubEvent {
+    eventType: 'pull_request_opened' | 'pull_request_closed';
+}
+
+interface GithubPullRequestOpenedEvent {
+    eventType: 'pull_request_opened';
+}
+
+interface GithubPullRequestClosedEvent {
+    eventType: 'pull_request_closed';
+}
+// #endregion
+
+// #region type guards
+function eventIsPrOpened(
+    event: GithubEvent
+): event is GithubPullRequestOpenedEvent {
+    return event.eventType === 'pull_request_opened';
+}
+
+function eventIsPrClosed(
+    event: GithubEvent
+): event is GithubPullRequestClosedEvent {
+    return event.eventType === 'pull_request_closed';
+}
+// #endregion
+
+function runChecks(event: GithubPullRequestOpenedEvent): void;
+function deleteSourceBranch(event: GithubPullRequestClosedEvent): void;
+
+export function handleGithubEvent(event: GithubEvent): void {
+    match.strike(event, [
+        [eventIsPrOpened, runChecks],
+        [eventIsPrClosed, deleteSourceBranch],
+    ]);
+}
+
+```
+</details>
+
+<details>
+<summary>Act differently for different types (Click to expand)</summary>
+
+```typescript
+interface Good { /* ... */ }
+function computationThatMayFail(): Error | Good;
+function handleError(e: Error): void;
+function handleGood(e: Good): void;
+
+export function doStuff(): void {
+    const result = computationThatMayFail();
+
+    match.strike(result, [
+        [Error, handleError],
+        [match.default, handleGood],
+    ]);
+}
+```
 </details>
