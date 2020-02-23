@@ -5,17 +5,22 @@
 
 ### Usage
 
+<details>
+<summary>Click to expand</summary>
 
+```typescript
+
+```
+</details>
 
 ### What is Pattern Matching?
-Pattern matching is an feature of many modern languages that lets you
-succinctly act on a value that may be one of many different types or states.
+Pattern matching is a feature of many modern languages that lets you
+act on a value that may be many different types or states.
 
 ### What Problems does `matchbook` solve?
 <details>
-<summary>
-Click to expand
-</summary>
+<summary>Click to expand</summary>
+<blockquote>
 
 For a very simple example, let's suppose you wanted to have a function
 that accepts an `Animal` and returns what kind of noise that animal makes.
@@ -23,9 +28,7 @@ that accepts an `Animal` and returns what kind of noise that animal makes.
 A naive implementation in `rust`, a language with
 a native pattern matching operator
 <details>
-<summary>
-Click to expand
-</summary>
+<summary>Click to expand</summary>
 
 ```rust
 enum Animal {
@@ -52,9 +55,7 @@ pub fn main() {
 
 The same example in `typescript` using switch / case statements
 <details>
-<summary>
-Click to expand
-</summary>
+<summary> to expandsummary>
 
 ```typescript
 enum Animal {
@@ -89,9 +90,7 @@ What if we wanted to store information about each animal
 in different types?
 
 <details>
-<summary>
-Click to expand
-</summary>
+<summary>Click to expand</summary>
 
 ```typescript
 enum DogBreed { Beagle, GermanShepherd, /* lots more */ }
@@ -131,9 +130,7 @@ Let's say we just got some new requirements, too. Our `getNoise` function needs 
 Supposing our `getNoise` function is still relevant, what happens to its implementation?
 
 <details>
-<summary>
-Click to expand
-</summary>
+<summary>Click to expand</summary>
 
 ```typescript
 // this is getting bloated!
@@ -160,6 +157,10 @@ function getNoise(animal: Animal) {
 
 This function is pretty bloated, but
 we can manage it if we refactor it like so:
+
+
+<details>
+<summary>Click to expand</summary>
 
 ```typescript
 // is this return type syntax new to you?
@@ -189,9 +190,13 @@ function getNoise(animal: Animal) {
     }
 }
 ```
+</details>
 
 This is better! Although that very succinct rust `match` operator
 would be really nice. This is where `matchbook` comes in!
+
+<details>
+<summary>Click to expand</summary>
 
 ```typescript
 import match from 'matchbook';
@@ -217,4 +222,6 @@ function getNoise(animal: Animal) {
     ]);
 }
 ```
+</details>
+</blockquote>
 </details>
