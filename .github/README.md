@@ -6,7 +6,7 @@
 ### Usage
 
 <details>
-<summary>Click to expand</summary>
+<summary>Dealing with discriminants? (Click to expand)</summary>
 
 ```typescript
 
@@ -25,10 +25,10 @@ act on a value that may be many different types or states.
 For a very simple example, let's suppose you wanted to have a function
 that accepts an `Animal` and returns what kind of noise that animal makes.
 
-A naive implementation in `rust`, a language with
-a native pattern matching operator
 <details>
-<summary>Click to expand</summary>
+<summary>
+A naive implementation in `rust`, a language with a native pattern matching operator (Click to expand)
+</summary>
 
 ```rust
 enum Animal {
@@ -53,9 +53,10 @@ pub fn main() {
 ```
 </details>
 
-The same example in `typescript` using switch / case statements
 <details>
-<summary> to expandsummary>
+<summary>
+The same example in `typescript` using switch / case statements (Click to expand)
+</summary>
 
 ```typescript
 enum Animal {
@@ -83,14 +84,15 @@ export function main(): void {
 ```
 </details>
 
-> But that's not much worse! At worst, our formatter will make us
+Note that this is not that different than the rust example. At worst, our formatter will make us
 separate our `test` from our `action` onto 2 separate lines.
 
+<details>
+<summary>
 What if we wanted to store information about each animal
 in different types?
-
-<details>
-<summary>Click to expand</summary>
+(Click to expand)
+</summary>
 
 ```typescript
 enum DogBreed { Beagle, GermanShepherd, /* lots more */ }
@@ -127,10 +129,12 @@ Let's say we just got some new requirements, too. Our `getNoise` function needs 
 - `'bark'` if `animal` is a `Dog` of `breed` `DogBreed#GermanShepherd`
 - `'woof'` if `animal` is a `Dog` of `breed` `DogBreed#Beagle`
 
-Supposing our `getNoise` function is still relevant, what happens to its implementation?
 
 <details>
-<summary>Click to expand</summary>
+<summary>
+Supposing our `getNoise` function is still relevant, what happens to its implementation?
+(Click to expand)
+</summary>
 
 ```typescript
 // this is getting bloated!
@@ -155,12 +159,12 @@ function getNoise(animal: Animal) {
 ```
 </details>
 
+<details>
+<summary>
 This function is pretty bloated, but
 we can manage it if we refactor it like so:
-
-
-<details>
-<summary>Click to expand</summary>
+(Click to expand)
+</summary>
 
 ```typescript
 // is this return type syntax new to you?
@@ -192,11 +196,13 @@ function getNoise(animal: Animal) {
 ```
 </details>
 
-This is better! Although that very succinct rust `match` operator
-would be really nice. This is where `matchbook` comes in!
 
 <details>
-<summary>Click to expand</summary>
+<summary>
+This is better! Although that very succinct rust `match` operator
+would be really nice. This is where `matchbook` comes in!
+(Click to expand)
+</summary>
 
 ```typescript
 import match from 'matchbook';
