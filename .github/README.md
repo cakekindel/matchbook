@@ -11,9 +11,12 @@
 Pattern matching is an feature of many modern languages that lets you
 succinctly act on a value that may be one of many different types or states.
 
+<details>
+<summary>
 ### What Problems does `matchbook` solve?
 For a very simple example, let's suppose you wanted to have a function
 that accepts an `Animal` and returns what kind of noise that animal makes.
+</summary>
 
 <details>
 <summary>
@@ -209,3 +212,4 @@ function getNoise(animal: Animal) {
     ]);
 }
 ```
+</details>
