@@ -1,7 +1,5 @@
-import { IsMatch } from './is-match';
-import { IsTypeMatch } from './is-type-match';
 import { Matched, Unmatched } from './match-state';
-import { ThenMapWith } from './then-map-with';
+import { Transform } from './transform';
 
 /**
  * @description
@@ -13,7 +11,7 @@ import { ThenMapWith } from './then-map-with';
  *
  * - If the incoming value is {@link Unmatched},
  * and the value is a match according to {@link IsMatch}, it will transform the
- * value with {@link ThenMapWith}.
+ * value with {@link Transform}.
  *
  * @example
  *   // An example of where you might store a `StrikeIfMatch` function
@@ -26,9 +24,9 @@ import { ThenMapWith } from './then-map-with';
  *   //   matches Env.Debug
  *   ifDebugLog('[DEBUG] - TESTING');
  */
-export type StrikeIfMatch<T, R> = (
-    val: Unmatched<T> | Matched<R>
-) => Unmatched<T> | Matched<R>;
+export type Matcher<TIn, TOut> = (
+    val: Unmatched<TIn> | Matched<TOut>
+) => Unmatched<TIn> | Matched<TOut>;
 
 /**
  * @description
@@ -42,6 +40,8 @@ export type StrikeIfMatch<T, R> = (
  *
  * If the incoming value is Unmatched<_>
  * it will **always** transform the
- * value with {@link ThenMapWith}.
+ * value with {@link Transform}.
  */
-export type StrikeAlways<T, R> = (val: Unmatched<T> | Matched<R>) => Matched<R>;
+export type DefaultMatcher<TIn, TOut> = (
+    val: Unmatched<TIn> | Matched<TOut>
+) => Matched<TOut>;

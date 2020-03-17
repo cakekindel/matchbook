@@ -197,7 +197,7 @@ would be really nice. This is where `matchbook` comes in!
 
 ```typescript
 import match from 'matchbook';
-import { Dog, DogBreed } from './models';
+import { Dog, DogBreed } from './types';
 import { animalIsDog, animalIsCat, dogIsBreed } from './type-guards';
 
 function getDogNoise(dog: Dog): string {

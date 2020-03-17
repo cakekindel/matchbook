@@ -17,7 +17,7 @@ export enum MatchState {
  * Used by matchbook to keep track of matching internally,
  * you shouldn't need to reference this type directly.
  */
-export type Matched<T> = T & { __matchstate?: MatchState.Matched };
+export type Matched<TOut> = TOut & { __matchstate?: MatchState.Matched };
 
 /**
  * @description
@@ -26,4 +26,4 @@ export type Matched<T> = T & { __matchstate?: MatchState.Matched };
  * Used by matchbook to keep track of matching internally,
  * you shouldn't need to reference this type directly.
  */
-export type Unmatched<T> = T & { __matchstate?: MatchState.Unmatched };
+export type Unmatched<TIn> = TIn & { __matchstate?: MatchState.Unmatched };
