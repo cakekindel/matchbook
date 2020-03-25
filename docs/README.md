@@ -16,6 +16,7 @@
 ---
 
 <img src="../assets/readme_samples/abc_123.png" width=500/>
+
 ---
 
 ### What is Pattern Matching?
