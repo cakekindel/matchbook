@@ -1,7 +1,6 @@
+import { anything } from './any';
 import { DefaultMatcher, Matcher } from './matcher';
 import { Problem } from './problem';
-
-type _ = unknown;
 
 /**
  * @description
@@ -10,38 +9,12 @@ type _ = unknown;
  *
  * @access package
  */
-export type MatchResult<TIn, TMatcher> = TMatcher extends Matcher<
-    infer TMatcher_In,
-    infer TOut
+export type MatchResult<TMatchers> = TMatchers extends Array<
+    Matcher<infer TIn, infer TOut>
 >
-    ? NonExhaustiveMatchResult<TIn, TOut, TMatcher, TMatcher_In>
-    : TMatcher extends
-          | Matcher<infer TMatcher_In, infer TOut>
-          | DefaultMatcher<infer TMatcher_In, infer TOut>
-    ? ExhaustiveMatchResult<TIn, TOut, TMatcher, TMatcher_In>
-    : Problem<
-          TMatcher,
-          'Cannot infer type of' | Matcher<_, _> | 'from arguments'
-      >;
-
-type ExhaustiveMatchResult<
-    TIn,
-    TOut,
-    TMatcher,
-    TMatcher_In
-> = TMatcher_In extends [unknown]
-    ? TOut
-    : TIn extends TMatcher_In
-    ? TOut
-    : Problem<TMatcher, TMatcher_In | 'Not assignable to' | TIn>;
-
-type NonExhaustiveMatchResult<
-    TIn,
-    TOut,
-    TMatcher,
-    TMatcher_In
-> = TMatcher_In extends [unknown]
     ? TIn | TOut
-    : TIn extends TMatcher_In
-    ? TIn | TOut
-    : Problem<TMatcher, TMatcher_In | 'Not assignable to' | TIn>;
+    : TMatchers extends Array<
+          DefaultMatcher<anything, infer TOut> | Matcher<anything, infer TOut>
+      >
+    ? TOut
+    : Problem<TMatchers, 'Cannot infer type of Matchers from arguments'>;

@@ -1,4 +1,5 @@
 import { DefaultMatcher, Transformer } from '../types';
+import { anything } from '../types/any';
 
 /**
  * @description
@@ -21,6 +22,6 @@ import { DefaultMatcher, Transformer } from '../types';
  *
  *   assertEq(actual, 'Goodnight!');
  */
-export declare const otherwise: <TIn, TOut>(
+export declare const otherwise: <TIn = anything, TOut = anything>(
     useDefault: Transformer<TIn, TOut>
 ) => DefaultMatcher<TIn, TOut>;

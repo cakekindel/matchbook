@@ -1,4 +1,5 @@
-import { MatchTracker } from './match-tracker';
+import { anything } from './any';
+import { Matched, Unmatched } from './match-tracker';
 
 /**
  * @description
@@ -9,8 +10,8 @@ import { MatchTracker } from './match-tracker';
  * delegate will just return it without doing anything.
  *
  * - If the incoming value is {@link Unmatched},
- * and the value is a match according to {@link MatchTracker}, it will transform the
- * value with {@link Transformer}.
+ * and the value is a match, it will
+ * transform the value with {@link Transformer}.
  *
  * @example
  *   // An example of where you might store a `StrikeIfMatch` function
@@ -23,9 +24,10 @@ import { MatchTracker } from './match-tracker';
  *   //   matches Env.Debug
  *   ifDebugLog('[DEBUG] - TESTING');
  */
-export type Matcher<TIn, TOut> = (
-    val: MatchTracker<TIn | TOut>
-) => MatchTracker<TIn | TOut>;
+export interface Matcher<TIn = anything, TOut = anything> {
+    __exhaustive: false;
+    (val: Unmatched<TIn> | Matched<TOut>): Unmatched<TIn> | Matched<TOut>;
+}
 
 /**
  * @description
@@ -41,6 +43,7 @@ export type Matcher<TIn, TOut> = (
  * it will **always** transform the
  * value with {@link Transformer}.
  */
-export type DefaultMatcher<TIn, TOut> = (
-    val: MatchTracker<TIn | TOut>
-) => MatchTracker<TOut>;
+export interface DefaultMatcher<TIn = anything, TOut = anything> {
+    __exhaustive: true;
+    (val: Unmatched<TIn> | Matched<TOut>): Matched<TOut>;
+}

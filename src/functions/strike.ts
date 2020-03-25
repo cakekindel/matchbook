@@ -1,6 +1,4 @@
-import { Matcher, MatchResult, Problem } from '../types';
-
-type _ = unknown;
+import { DefaultMatcher, Matcher, MatchResult } from '../types';
 
 /**
  * @description
@@ -32,9 +30,7 @@ type _ = unknown;
  *   assertEq(getValue(Coin.Quarter), 0.25);
  *   assertEq(getValue(Coin.Nickel), 0.05);
  */
-export declare function strike<TIn, TArgs extends Array<Matcher<TIn, _>>>(
-    val: TIn,
-    ...matchers: TArgs
-): TArgs extends Array<infer TMatcher>
-    ? MatchResult<TIn, TMatcher>
-    : Problem<TArgs, 'Is not an array'>;
+export declare function strike<
+    TIn,
+    TArgs extends Array<Matcher<TIn> | DefaultMatcher<TIn>>
+>(val: TIn, ...matchers: TArgs): MatchResult<TArgs>;
