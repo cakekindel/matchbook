@@ -4,7 +4,7 @@
 
 export * from './ctor';
 export * from './match-result';
-export * from './match-state';
+export * from './match-tracker';
 export * from './matcher';
 export * from './problem';
-export * from './transform';
+export * from './transformer';

@@ -1,4 +1,4 @@
-import { Ctor, Matcher, Transform } from '../types';
+import { Ctor, Matcher, Transformer } from '../types';
 
 /**
  * @description
@@ -25,7 +25,7 @@ import { Ctor, Matcher, Transform } from '../types';
  */
 export declare function match<TIn, TInExt extends TIn, TOut>(
     ifInstanceOf: Ctor<TInExt>,
-    then: Transform<TInExt, TOut>
+    then: Transformer<TInExt, TOut>
 ): Matcher<TIn, TOut>;
 
 /**
@@ -51,7 +51,7 @@ export declare function match<TIn, TInExt extends TIn, TOut>(
  */
 export declare function match<TIn, TInExt extends TIn, TOut>(
     ifIsType: (val: TIn) => val is TInExt,
-    then: Transform<TInExt, TOut>
+    then: Transformer<TInExt, TOut>
 ): Matcher<TIn, TOut>;
 
 /**
@@ -71,7 +71,7 @@ export declare function match<TIn, TInExt extends TIn, TOut>(
  */
 export declare function match<TIn, TOut>(
     ifTrue: (val: TIn) => boolean,
-    then: Transform<TIn, TOut>
+    then: Transformer<TIn, TOut>
 ): Matcher<TIn, TOut>;
 
 /**
@@ -101,7 +101,7 @@ export declare function match<TIn, TOut>(
  */
 export declare function match<TIn, TOut>(
     ifEquals: () => TIn,
-    then: Transform<TIn, TOut>
+    then: Transformer<TIn, TOut>
 ): Matcher<TIn, TOut>;
 
 /**
@@ -127,5 +127,5 @@ export declare function match<TIn, TOut>(
  */
 export declare function match<TIn, TOut>(
     ifEquals: TIn,
-    then: Transform<typeof ifEquals, TOut>
+    then: Transformer<typeof ifEquals, TOut>
 ): Matcher<TIn, TOut>;

@@ -3,6 +3,13 @@ import { Problem } from './problem';
 
 type _ = unknown;
 
+/**
+ * @description
+ * Internal helper type that calculates
+ * the return type of `pattern` and `strike`
+ *
+ * @access package
+ */
 export type MatchResult<TIn, TMatcher> = TMatcher extends Matcher<
     infer TMatcher_In,
     infer TOut

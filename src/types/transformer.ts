@@ -11,4 +11,4 @@
  * // logs: '\u1F95A'
  * match.strike('😊', match.when(Emoji.Smile, val => getUnicode(val)));
  */
-export type Transform<TIn, TOut> = TOut | ((val: TIn) => TOut);
+export type Transformer<TIn, TOut> = TOut | ((val: TIn) => TOut);
