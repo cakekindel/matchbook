@@ -1,4 +1,4 @@
-![](../assets/logo.png)
+<img src="../assets/logo.png" width=500/>
 
 # matchbook
 
@@ -15,8 +15,7 @@
 
 ---
 
-![](../assets/readme_samples/abc_123.png)
-
+<img src="../assets/readme_samples/abc_123.png" width=500/>
 ---
 
 ### What is Pattern Matching?
@@ -40,7 +39,7 @@ Coming soon - `typedoc`
 #### Handle objects that differ by a discriminator
 _A Discriminator is a fancy word for a property on an object
 that tells you what kind of object it is._
-![](../assets/readme_samples/discriminator_example.png)
+<img src="../assets/readme_samples/discriminator_example.png" width=500/>
 
 [liga]: https://github.com/ToxicFrog/Ligaturizer
 [rust_match]: https://doc.rust-lang.org/book/ch06-02-match.html
