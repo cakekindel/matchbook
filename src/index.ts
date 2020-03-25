@@ -2,12 +2,13 @@ import { otherwise, match, strike, pattern, unwrap } from './functions';
 
 // prettier-ignore
 export {
-    match,
-    match as m,
     strike,
     pattern,
-    unwrap,
-    otherwise,
+    pattern as book,
+    match,
+    match as m,
     otherwise as _,
-    otherwise as fallback,
+    otherwise as rest,
+    otherwise,
+    unwrap,
 };
