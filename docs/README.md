@@ -7,9 +7,8 @@
 ---
 
 ### Why you may consider using `matchbook`:
-- it has **_zero_** dependencies
-    - _package size: **(npm badge here)**_
-- reliable _**(code cov badge here)**_
+- it has **_zero_** dependencies _**(npm badge here)**_
+- reliable [![codecov][codecov_badge]][codecov_link]
 - simple API
 - smart types
 
@@ -44,3 +43,5 @@ that tells you what kind of object it is._
 
 [liga]: https://github.com/ToxicFrog/Ligaturizer
 [rust_match]: https://doc.rust-lang.org/book/ch06-02-match.html
+[codecov_link]: https://codecov.io/gh/cakekindel/matchbook
+[codecov_badge]: https://codecov.io/gh/cakekindel/matchbook/branch/master/graph/badge.svg
