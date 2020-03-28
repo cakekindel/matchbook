@@ -5,8 +5,6 @@ import { match, pattern, _ } from '../../src';
 
 declare let message: MessageEvent;
 
-type Fn<TFn extends (args: unknown[]) => unknown> = TFn;
-
 interface Event { /* ... */ }
 interface MessageEvent extends Event { /* ... */ }
 
